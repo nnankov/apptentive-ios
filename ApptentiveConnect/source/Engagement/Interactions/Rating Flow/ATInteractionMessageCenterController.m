@@ -44,6 +44,12 @@
 
 		ATMessageCenterViewController *messageCenter = navigationController.viewControllers.firstObject;
 		messageCenter.interaction = self.interaction;
+		
+		if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+			navigationController.modalPresentationStyle = UIModalPresentationOverFullScreen;
+		} else {
+			[viewController presentViewController:navigationController animated:YES completion:nil];
+		}
 
 		[viewController presentViewController:navigationController animated:YES completion:nil];
 	}

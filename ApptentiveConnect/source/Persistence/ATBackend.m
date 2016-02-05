@@ -515,7 +515,12 @@ static NSURLCache *imageCache = nil;
 	if (!didShowMessageCenter) {
 		UINavigationController *navigationController = [[ATConnect storyboard] instantiateViewControllerWithIdentifier:@"NoPayloadNavigation"];
 
-		[viewController presentViewController:navigationController animated:YES completion:nil];
+		if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+			navigationController.modalPresentationStyle = UIModalPresentationOverFullScreen;
+		} else {
+			[viewController presentViewController:navigationController animated:YES completion:nil];
+		}
+		
 	}
 
 	return didShowMessageCenter;
